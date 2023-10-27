@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 
 int main(){
     int a[4] = { -1, 2, 10, 7 };
     int b[4];
     for (int i = 0; i < 4; i++)
-         b[i] = a[3 - i];
+        b[i] = a[3 - i];
 
     printf("a[3]: %d\n", a[3]);
     printf("b[3]: %d\n", b[3]);
