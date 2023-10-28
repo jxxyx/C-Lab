@@ -63,15 +63,18 @@ int match_pattern(const char *pattern, const char *text, int case_sensitive) {
 }
 
 int main() {
-      char text[MAX_LENGTH];
+    // variable names
+    char text[MAX_LENGTH];
     char pattern[MAX_LENGTH];
     int case_sensitive;
 
     // Read the input text and pattern.
     printf("Enter a line of text:\n");
+    // This will get the text and check for the character length
     gets(text, MAX_LENGTH, stdin);
 
     printf("Enter a pattern:\n");
+    // using fgets to read character into an array of char until a newline or end-of-file indicator is encountered
     fgets(pattern, MAX_LENGTH, stdin);
 
     // Convert the pattern and text to lowercase.
