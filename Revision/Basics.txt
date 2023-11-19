@@ -1,0 +1,238 @@
+# Basic Types
+Imagine you are creating a BMI calculator (again of course 🙄)
+
+Initialise the following 6 variables: `age, mass, height, BMI, category and name` using all 4 variables types: `int, float, double, char`.
+
+A sample dataset would be, Mike that is 25 years old, his mass is 64 kg and is 171.3m tall.
+
+Great, now you have initialised the variables, store some values for Phillipe who is 23 years old, 60kg and is 182.5m tall.
+
+```C
+age = 23;
+mass = 60;
+height = 182.5;
+BMI = mass / height * height;
+strncpy(name, "Philippe", 6);
+```
+
+1. If you want to print mass, which format should you use?
+2. Will you get 60 as your output?
+3. Printing the name variable shows me Philip as an output, why is that so ?
+4. Philippe's birthday is 3 months away, so he wishes to indicate his age as 22.75. What is the output of his age after printing?
+
+# Characters and Strings
+In C programming, a string is an array of char terminated with a null character \0.
+
+```c
+// char type in C is actually an int type in disguise where the value is actually an ASCII code.
+char a = 'a';			
+printf ("%d\n", a);		// returns you 97, which maps to the char a on the ASCII map.
+
+a += 2;	// changes 'a' into 'c' by adding 2.
+printf ("%c\n", a);
+
+a -= 32; // changes 'c' into 'C' by minusing 32
+printf ("%c\n", a);
+```
+
+Different ways of initialising strings in c.
+
+```C
+char *name1 = "Fabian Chua";	  // returns you the pointer of the char array 
+char name2[20] = "Norman Chia";	// initialises an array of 20 characters
+char name3[] = "Pang Ka Ho";	  // initialises an array and let compiler decide how big the array depending on string
+```
+# Pointers
+So what is a pointer?
+
+A pointer is a variable that stores a **memory address** of a value, instead of holding the actual value itself.
+
+```c
+int  price = 20;   
+int* pricePtr; /* declaring a pointer to store the memory address of some int type data*/
+
+// int * pricePtr; // is like whether your pour milk first then cereals 
+// int *pricetPtr; // or vice-versa, both works the same
+
+pricePtr = &price;  /* store address of price in pointer variable*/
+
+printf("Address of price variable: %x\n", &price );
+
+/* address stored in pointer variable */
+printf("Address stored in pricePtr variable: %x\n", pricePtr );
+
+/* access the value using deferencing */
+printf("Value of *pricePtr variable: %d\n", *pricePtr );
+```
+
+## Dereferencing
+Simply put, dereferencing tells the pointer to return you the value of what is in the memory address.
+
+Dereferencing is something we already do with arrays; we simply weren't aware of it. The brackets operator - [0] for example, accesses the first item of the array. And since arrays are actually pointers, accessing the first item in the array is the same as dereferencing a pointer. Dereferencing a pointer is done using the asterisk operator *.
+
+
+```c
+int arr1[5] = {5,2,3,4,1};
+
+printf("%d\n", arr1[0]); // using bracket operator [0]
+printf("%d\n", *arr1);   // using dereference 
+
+if (arr1[0]==*arr1)
+{
+  printf("Hello... Monkey...\n");
+}
+
+if (arr1[3]==*(arr1???)) // can you fix this line to make it print the below statement?
+{
+  printf("Zoo... Giraffe... Kangaroo\n");
+}
+```
+
+# Basic Arithmetic Operations
+Arithmetic Operations will be pretty similar across every programming language, each with their own twist because of its syntax. For C, you will have to be especially careful with the variable type.
+
+## Addition (x + y) and Subtraction  (x - y)
+
+```c
+int x = 1;
+float y = 2.3;
+
+x = x + y;
+printf("x: %d", x);
+```
+
+1. Will the above code compile and run?
+2. If no, why not? If yes, what will be the output?
+
+##  Multiplication x * y and Division x / y
+
+```C
+int a = 1;
+float b = 3.5;
+a = a * b;
+
+printf("a: %d\n", a);
+
+if (a == b) {
+  printf("There is no segmentation fault in Ba Sing Se");
+}
+```
+1. What is the value of a that is printed out?
+2. Will the above statement be printed?
+
+```c
+int x = 3;
+printf("Square of x: %d", x**2);
+```
+1. Will the above code compile and run?
+2. If no, why not? If yes, what will be the output?
+
+## % 	Modulus (Remainder) 	x % y
+The modulo operator (%) in C will give the **remainder that is left over** when one
+number is divided by another. For example, 15 % 4 will result in 3 since 15 is not evenly divisible by 4, and a remainder of 3 is left over. 
+      
+The modulo operator is usually used to check for an even number or can be used as a sub-counter.
+
+
+#### Function to check if it is an even or odd number
+```c
+void checkEvenOdd(int inputNumber){
+  if( inputNumber % 2 ==0 ) // if number is divisble by 2 and leaves 0 remainder
+  {
+    printf("%d is an even number\n", inputNumber);
+  } else{
+    printf("%d is an odd number\n", inputNumber);
+  }
+}
+```
+
+#### Classical [Fizz Buzz Problem](https://leetcode.com/problems/fizz-buzz/)
+```C
+int i, n;
+printf("Enter the number :");
+scanf("%d", &n);
+for (i = 1; i <= n; i++) {
+  // number divisible by 3 and 5 will always be divisible by 15, print
+  // 'FizzBuzz' in place of the number
+  if (i % 15 == 0)
+    printf("FizzBuzz\t");
+
+  // number divisible by 3, print 'Fizz' in place of the number
+  else if ((i % 3) == 0)
+    printf("Fizz\t");
+
+  // number divisible by 5, print 'Buzz' in place of the number
+  else if ((i % 5) == 0)
+    printf("Buzz\t");
+
+  else // print the number
+    printf("%d\t", i);
+}
+```
+
+
+
+## ++ 	Increment/Decrement by 1 (Unary) ++x or x++ / --x or x--
+By now I'm sure yall have use i++ or ++i in your for-loops before.
+But, do you know the underlying difference between ++i or i++ ? 
+
+Try printing out the following code and observe the difference.
+```c
+int x;
+x = 5;
+printf("Value of x: %d\n", x++); // Save x (5); Increment x (=6); Print old x (5).
+x = 10;
+printf("Value of x: %d\n", ++x); // Increment x (=11); Print x (11).
+//explanation
+  ```
+
+In the first statement, the output is 5 because the `x` variable is first saved to be printed then incremented. You can take it as if the computer sees the `x` first and be like "oh I need to print this!" then sees the `++` and goes "oh I need to increment as well".
+
+In the second print statement, the output is 11 because the `x` variable is first incremented then used to be printed. 
+
+
+## Logical Operators (AND, OR, NOT)
+Likewise logical operation in C is similar to most languages as well, these are the most common operators used.
+ | Operator | Name | Example
+| ----------- | ----------- |--- |
+| && | 	Logical AND | 	(x >= 1) && (x <= 100) |
+| &#124; &#124;  |	Logical OR |	(x < 1) &#124; &#124;  (x > 100) |
+|!| 	Logical NOT| 	!(x == 8)|
+
+However, since there is no native boolean type like True or False in  C. Usually, 1 and 0 is used to represent True or False.
+
+```C
+#define TRUE 1
+#define FALSE 0
+// not very good idea btw
+```
+
+Example of using logical operators
+```C
+int isGreen = 1;
+int isCyclop = 1; // cyclop refers to a person with 1 eye LOL
+
+// is green in colour and is a cyclop
+if (isGreen && isCyclop) {
+  printf("Probably Mike Wazowski");
+}
+
+// is green in colour and it not a cyclop
+if (isGreen && !isCyclop) {
+  printf("Maybe Shrek, maybe Hulk");
+}
+
+// not (green and cyclops)
+if (!(isGreen && isCyclop)) {
+  printf("Not Mike Wazowski");
+}
+
+// Applying De Morgan's law from Math. The above can also be written as
+
+// is not green or is not cyclop
+if (!isGreen || !isCyclop) {
+  printf("Not Mike Wazowski");
+}
+return 0; // have you ever wondered why we must return 0?
+```
+
